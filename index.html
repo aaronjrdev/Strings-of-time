@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings of Time - Bach's Harpsichord</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=EB+Garamond&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Strings of Time</h1>
+        <p>Inspired by Johann Sebastian Bach</p>
+    </header>
+    <main>
+        <section class="keyboard-section">
+            <h2> Harpsichord </h2>
+            <div class="keyboard">
+                <div class="key white" data-note="c3" onclick="playSound('c3')">C</div>
+                <div class="key black" data-note="c6" onclick="playSound('c6')">Cb</div>
+                <div class="key white" data-note="d6" onclick="playSound('d6')">D</div>
+                <div class="key black" data-note="dcsharp6" onclick="playSound('dcsharp6')">Db</div>
+                <div class="key white" data-note="e6" onclick="playSound('e6')">E</div>
+                <div class="key white" data-note="f6" onclick="playSound('f6')">F</div>
+                <div class="key black" data-note="f6" onclick="playSound('f6')">Fb</div>
+                <div class="key white" data-note="g6" onclick="playSound('g6')">G</div>
+                <div class="key black" data-note="gccsharp6" onclick="playSound('gccsharp6')">Gb</div>
+                <div class="key white" data-note="a6" onclick="playSound('a6')">A</div>
+                <div class="key black" data-note="asharp" onclick="playSound('acsharp6')">Ab</div>
+                <div class="key white" data-note="b6" onclick="playSound('b6')">B</div>
+                <div class="key white" data-note="c6" onclick="playSound('c6')">S</div>
+            </div>
+        </section>
+        <section class="info-section">
+            <h2>About Johann Sebastian Bach</h2>
+            <p>Johann Sebastian Bach (1685-1750) was a German composer and musician of the Baroque period. His works are revered for their intellectual depth, technical command, and artistic beauty. Bach's music is characterized by intricate counterpoint and harmony, making him one of the most influential composers in Western music history.</p>
+            <h2>My Artistic Interpretation</h2>
+            <p>This digital art piece represents the harmony and complexity of Bach's music through interactive elements that allow users to engage with the sound of the harpsichord.</p>
+        </section>
+    </main>
+    <footer>
+        <p><strong>Chavez , Aaron James B. BSCS - 1</strong></p>
+        <p>BSCS - 1</p>
+        <p> Ms. May P. Mina</p>
+    </footer>
+
+    <script>
+        
+        function playSound(note) {
+            const audio = new Audio(sounds/${note}.mp3);
+            audio.play();
+        }
+
+      
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => {
+            key.addEventListener('click', () => {
+                const note = key.getAttribute('data-note');
+                playSound(note);
+            });
+        });
+
+        
+        document.addEventListener('keydown', (e) => {
+            const keys = document.querySelectorAll('.key');
+            keys.forEach(key => {
+                if (e.key.toUpperCase() === key.textContent) {
+                    const note = key.getAttribute('data-note');
+                    playSound(note);
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => {
+        if (e.key.toUpperCase() === key.textContent) {
+            const note = key.getAttribute('data-note');
+            playSound(note);
+            key.classList.add('active'); // Add active class for animation
+            setTimeout(() => {
+                key.classList.remove('active'); // Remove active class after animation
+            }, 200); // Duration should match the CSS transition
+        }
+    });
+});
+    </script>
+</body>
+</html>
